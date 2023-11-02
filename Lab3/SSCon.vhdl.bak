@@ -1,0 +1,33 @@
+library ieee;
+USE ieee.std_logic.ALL;
+
+ENTITY SSCon IS 
+	PORT(i_MSreg, iSSreg: IN STD_lOGIC_VECTOR (2 TO 0);
+	i_SSCS: IN STD_lOGIC;
+	i_GClock, i_GReset: IN STD_lOGIC;
+	o_SSreg: OUT STD_lOGIC_VECTOR (2 to 0);
+	
+END SSCon;
+
+ARCHITECTURE RTL OF SSCon IS 
+
+SIGNAL int_S01, int_S02: STD_lOGIC;
+
+BEGIN 
+--M2
+	
+	o_SSreg(2) <= ((not i_MSreg(1))and (not i_SSreg(1)) and (not i_SSreg(2)) and (not i_SSCS) );
+	
+--M1 
+	
+	o_SSreg(1) <= ((not i_MSreg(0) and (not i_MSreg(1) and i_SSCS);
+	
+--M0
+	
+	int_M01 <= (not i_MSreg(0)) and (not i_MSreg(2));
+	int_M02 <= (i_mSreg(0) and i_SSCS);
+	
+	o_SSreg(0) <= (int_M01 and int_M02 and not i_SSreg(0));
+	
+
+END RTL;
